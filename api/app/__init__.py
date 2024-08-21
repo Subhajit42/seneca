@@ -3,7 +3,7 @@ Initialize Flask application and register blueprints for each set of routes:
 """
 
 from flask import Flask
-
+from flask_cors import CORS
 
 # Custom modules
 from config import ApplicationConfig
@@ -17,6 +17,8 @@ ollama_client: Ollama = Ollama()
 
 # Create the app instance
 app = Flask(__name__)
+# TODO: Change this for deployment
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
 
 # Set the configurations from external object
 app.config.from_object(ApplicationConfig)
