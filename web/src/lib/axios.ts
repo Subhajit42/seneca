@@ -1,7 +1,12 @@
 import axios from "axios";
 
+const apiUrl = "/api";
+
+// Added proxy for the below url
+// const apiUrl = "http://127.0.0.1:5000";
+
 export const authClient = axios.create({
-  baseURL: "http://127.0.0.1:5000/api" + "/auth",
+  baseURL: apiUrl + "/auth",
   timeout: 10_000,
   headers: {
     "Content-Type": "application/json",
@@ -9,7 +14,7 @@ export const authClient = axios.create({
 });
 
 export const llamaClient = axios.create({
-  baseURL: "http://127.0.0.1:5000/api" + "/ollama",
+  baseURL: apiUrl + "/ollama",
   timeout: 10_000,
   headers: {
     "Content-Type": "application/json",

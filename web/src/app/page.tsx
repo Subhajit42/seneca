@@ -9,10 +9,6 @@ export default function Home() {
     const fetchData = async () => {
       try {
         const response = await authClient.get("/@me");
-        toast({
-          title: "Success",
-          description: response.data.message,
-        });
       } catch (error) {
         console.log("User not found: ", error);
         toast({
