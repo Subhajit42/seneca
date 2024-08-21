@@ -13,7 +13,7 @@ import { sendMessage } from "@/lib/gemini";
 import { Action, Message } from "@/types/Chat";
 
 // Hooks
-import useAuth from "@/hooks/use-auth";
+
 import { generateImage, Image } from "@/lib/openai";
 
 export default function ChatBottomBar({
@@ -34,7 +34,7 @@ export default function ChatBottomBar({
   setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
 }) {
   // The current logged-in user
-  const { user } = useAuth();
+  const username = "Todo"; //TODO
   // Used to keeping track of the prompt
   const [prompt, setPrompt] = useState<string>("");
 
@@ -107,8 +107,8 @@ export default function ChatBottomBar({
           {
             id: prev.length + 1,
             role: "user",
-            name: user?.displayName,
-            avatar: user?.photoURL,
+            name: username,
+
             message: prompt || cardPrompt,
           },
         ] as Message[]

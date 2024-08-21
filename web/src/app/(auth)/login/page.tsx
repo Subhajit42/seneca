@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { signInSchema } from "@/schemas/signIn.schema";
 import Link from "next/link";
+import { authClient } from "@/lib/axios";
 
 const SignIn = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,15 +29,22 @@ const SignIn = () => {
   const form = useForm({
     resolver: zodResolver(signInSchema),
     defaultValues: {
-      identifier: "",
+      email: "",
       password: "",
     },
   });
 
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
+    console.log(data);
     setIsSubmitting(true);
     try {
+      const response = await authClient.post("/login", data);
+      toast({
+        title: "Success",
+        description: response.data.message,
+      });
       form.reset();
+      router.replace("/");
     } catch (error) {
       console.log("Error while login user: ", error);
       toast({
@@ -64,12 +72,12 @@ const SignIn = () => {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <FormField
                 control={form.control}
-                name="identifier"
+                name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Username</FormLabel>
+                    <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="username" {...field} />
+                      <Input placeholder="email" {...field} />
                     </FormControl>
 
                     <FormMessage />

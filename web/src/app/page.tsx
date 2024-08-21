@@ -1,6 +1,31 @@
-import AgreementCard from "@/components/component/AgreementCard";
+"use client";
 
-export default async function Home() {
+import AgreementCard from "@/components/component/AgreementCard";
+import { toast } from "@/components/ui/use-toast";
+import { authClient } from "@/lib/axios";
+import { useEffect } from "react";
+export default function Home() {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await authClient.get("/@me");
+        toast({
+          title: "Success",
+          description: response.data.message,
+        });
+      } catch (error) {
+        console.log("User not found: ", error);
+        toast({
+          title: "An error occurred",
+          description: "User not found.",
+          variant: "destructive",
+        });
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <div className="dark:bg-black bg-white  dark:bg-dot-white/[0.2] bg-dot-black/[0.2] min-h-[100vh]">

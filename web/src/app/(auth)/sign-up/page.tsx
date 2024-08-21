@@ -24,6 +24,7 @@ import { Button } from "@/components/ui/button";
 import { Eye } from "lucide-react";
 import { EyeOff } from "lucide-react";
 import Link from "next/link";
+import { client } from "@/lib/axios";
 
 const Signup = () => {
   const [password, setPassword] = useState("");
@@ -49,14 +50,6 @@ const Signup = () => {
   const onSubmit = async (data: z.infer<typeof signUpSchema>) => {
     setIsSubmitting(true);
     console.log(data);
-
-    const client = axios.create({
-      baseURL: "http://127.0.0.1:5000/api" + "/auth",
-      timeout: 10_000,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
 
     try {
       //   const fd = new FormData();
