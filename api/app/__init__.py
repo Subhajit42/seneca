@@ -41,6 +41,7 @@ login_manager.init_app(app)
 from .routes.admin import admin_bp
 from .routes.auth import auth_bp
 from .routes.ollama import ollama_bp
+from .routes.download import download_bp
 
 # Register blueprints
 app.register_blueprint(admin_bp, url_prefix="/_/admin")
@@ -48,3 +49,4 @@ app.register_blueprint(admin_bp, url_prefix="/_/admin")
 # The APIS for db access
 app.register_blueprint(auth_bp, url_prefix="/api/auth")
 app.register_blueprint(ollama_bp, url_prefix="/api/ollama")
+app.register_blueprint(download_bp, url_prefix="/api/download")
