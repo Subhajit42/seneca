@@ -4,6 +4,39 @@ import AgreementCard from "@/components/component/AgreementCard";
 import { toast } from "@/components/ui/use-toast";
 import { authClient } from "@/lib/axios";
 import { useEffect } from "react";
+
+import { HiDocumentText } from "react-icons/hi2";
+import { IoDocumentLock } from "react-icons/io5";
+import { FaHandshakeSimple } from "react-icons/fa6";
+import { FaUserFriends } from "react-icons/fa";
+import { FaRegMessage } from "react-icons/fa6";
+import { MdMiscellaneousServices } from "react-icons/md";
+
+
+
+const cards = [
+  {
+    title: "Employment Agreement",
+    image: <HiDocumentText className="scale-150 text-red-400" />,
+  },{
+    title: "Non-Disclosure Agreement",
+    image: <IoDocumentLock className="scale-150 text-orange-400"/>}
+    ,{
+    title: "Service Agreement",
+    image: <MdMiscellaneousServices className="scale-150 text-gray-400" />}
+    ,{
+    title: "Consulting Agreement",
+    image: <FaRegMessage className="scale-150 text-blue-400" />}
+    ,{
+    title: "Partnership Agreement",
+    image: <FaUserFriends className="scale-150 text-yellow-400" />}
+    ,{
+    title: "Lease Agreement",
+    image: <FaHandshakeSimple className="scale-150 text-green-400" />}
+]
+
+
+
 export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
@@ -24,7 +57,8 @@ export default function Home() {
 
   return (
     <>
-      <div className="dark:bg-black bg-white  dark:bg-dot-white/[0.2] bg-dot-black/[0.2] min-h-[100vh]">
+      {/* <div className="dark:bg-black bg-white  dark:bg-dot-white/[0.2] bg-dot-black/[0.2] min-h-[100vh]"> */}
+      <div className="hero-section-background min-h-[100vh]">
         <header className="flex justify-between p-4 lg:px-10 lg:py-4">
           <h1 className="text-3xl  font-heading font-extrabold">Seneca</h1>
           <div className="w-10 h-10 dark:bg-white bg-black rounded-full"></div>
@@ -36,12 +70,11 @@ export default function Home() {
           </p>
         </section>
         <section className="grid grid-cols-2 lg:grid-cols-3 gap-4 p-4 lg:w-[50%] m-auto justify-items-center items-center font-body gap-y-8 ">
-          <AgreementCard title="Employment Agreement" />
-          <AgreementCard title="Non-Disclosure Agreement" />
-          <AgreementCard title="Service Agreement" />
-          <AgreementCard title="Consulting Agreement" />
-          <AgreementCard title="Partnership Agreement" />
-          <AgreementCard title="Lease Agreement" />
+          
+        {cards.map((card, index) => (
+            <AgreementCard key={index} title={card.title} icon={card.image} />
+        ))}
+        
         </section>
       </div>
     </>
