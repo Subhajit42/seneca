@@ -24,7 +24,11 @@ instance/
 # logs
 *.log
 
+# cache folders
+__pycache__/
+
 # scripts
+scripts/
 *.sh
 
 # Coverage reports
