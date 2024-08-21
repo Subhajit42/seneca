@@ -6,8 +6,6 @@ import { AnimatePresence } from "framer-motion";
 // Components
 import ChatBottomBar from "./chat-bottom-bar";
 import ChatBubble from "./chat-bubble";
-import FlatList from "./flat-list";
-import { PromptCard } from "./prompt-card";
 
 // Constants
 import {
