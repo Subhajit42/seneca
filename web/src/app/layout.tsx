@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import { Kanit } from "next/font/google";
 
+import { Toaster } from "@/components/ui/toaster";
+
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 
@@ -38,7 +40,7 @@ export default function RootLayout({
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
           "flex flex-col",
-          "antialiased",
+          "antialiased font-body",
           fontHeading.variable,
           fontBody.variable
         )}
@@ -49,7 +51,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AuthProvider>{children}</AuthProvider>
+          <AuthProvider>
+            {children}
+            <Toaster />
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>
