@@ -9,7 +9,6 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 
 import "./globals.css";
-import { AuthProvider } from "@/context/AuthContext";
 
 const fontHeading = DM_Sans({
   subsets: ["latin"],
@@ -25,7 +24,7 @@ const fontBody = Kanit({
 });
 
 export const metadata: Metadata = {
-  title: "Saneca",
+  title: "Seneca",
   description: "A clone of Playground using Next.js and Shadcn UI",
 };
 
@@ -51,10 +50,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AuthProvider>
-            {children}
-            <Toaster />
-          </AuthProvider>
+
+          {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
